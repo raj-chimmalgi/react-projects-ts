@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { data } from './data'
+import List from './List'
 
 function App() {
   const [people, setPeople] = useState(data)
@@ -8,19 +9,7 @@ function App() {
     <>
       <section className='container'>
         <h3>{people.length} birthdays today</h3>
-        {people.map((person) => {
-          return (
-            <>
-              <article key={person.id} className='person'>
-                <img src={person.image} alt={person.name}></img>
-                <div>
-                  <h4>{person.name}</h4>
-                  <p>{person.age} years</p>
-                </div>
-              </article>
-            </>
-          )
-        })}
+        <List people={people} />
         <button onClick={() => setPeople([])}>Clear All</button>
       </section>
     </>
