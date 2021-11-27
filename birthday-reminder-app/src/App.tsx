@@ -7,11 +7,13 @@ function App() {
 
   return (
     <>
-      <section className='container'>
-        <h3>{people.length} birthdays today</h3>
-        <List people={people} />
-        <button onClick={() => setPeople([])}>Clear All</button>
-      </section>
+      <main>
+        <section className='container'>
+          <h3>{people.length} birthdays today</h3>
+          <List people={people} />
+          <button onClick={() => setPeople([])}>Clear All</button>
+        </section>
+      </main>
     </>
   )
 }
