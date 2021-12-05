@@ -12,7 +12,7 @@ function Question({ id, title, info }: IQuestionProps) {
 
   return (
     <article className='question'>
-      <header></header>
+      <header>
         <h4>{title}</h4>
         <button className='btn' onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
