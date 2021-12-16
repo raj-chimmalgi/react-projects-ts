@@ -1,7 +1,7 @@
 import React from 'react'
 import { Item } from './interfaces'
 
-function Menu({ items }: Array<Item>) {
+function Menu({ items }: { items: Item[] }) {
   return (
     <div className='section-center'>
       {items.map((menuItem) => {
