@@ -1,7 +1,7 @@
 import React from 'react'
 import Person from './Person'
 
-const List = (people: Array<Person>) => {
+const List = ({ people }: { people: Array<Person> }) => {
   return (
     <>
       {people.map((person) => {
