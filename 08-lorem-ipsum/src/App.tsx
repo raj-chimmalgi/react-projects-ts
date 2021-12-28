@@ -1,10 +1,31 @@
 import React, { useState } from 'react'
 import data from './data'
+import Lorem from './Lorem'
 
 function App() {
-  const text: string[] = data
+  const [lorem, setLorem] = useState<string[]>([])
+  const [numPara, setNumPara] = useState(0)
 
-  return <div></div>
+  const generateLorem = () => {
+    if (numPara <= data.length) setLorem(data.slice(0, numPara))
+  }
+
+  return (
+    <main style={{ textAlign: 'center' }}>
+      <h3>TIRED OF BORING LOREM IPSUM?</h3>
+      <section>
+        <span>
+          <label>Paragraphs: </label>
+          <input
+            type='number'
+            min='0'
+            onChange={(e) => setNumPara(Number(e.target.value))}></input>
+          <button onClick={generateLorem}>GENERATE</button>
+        </span>
+      </section>
+      <Lorem lorem={lorem} />
+    </main>
+  )
 }
 
 export default App
