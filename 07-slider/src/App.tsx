@@ -11,28 +11,30 @@ export interface IPerson {
 }
 
 function App() {
-  const [people, setPeople] = useState<IPerson[]>(data)
-  const [index, setIndex] = useState(0)
+  const [idx, setIdx] = useState<number>(0)
 
-  const next = () => {
-    index < people.length - 1 ? setIndex(index + 1) : setIndex(0)
-  }
-  const previous = () => {
-    index > 0 ? setIndex(index - 1) : setIndex(0)
-  }
+  const handleNext = () => (idx < data.length - 1 ? setIdx(idx + 1) : setIdx(0))
+
+  const handlePrevious = () =>
+    idx !== 0 ? setIdx(idx - 1) : setIdx(data.length - 1)
 
   useEffect(() => {
-    setInterval(next, 4000)
-  }, [])
+    let id = setInterval(handleNext, 4000)
+    return () => {
+      console.log(id)
+
+      clearInterval(id)
+    }
+  }, [idx])
 
   return (
     <main style={{ textAlign: 'center' }}>
       <h1>Reviews</h1>
-      <Review person={people[index]} />
       <span>
-        <button onClick={previous}>&lt;</button>
-        <button onClick={next}>&gt;</button>
+        <button onClick={handlePrevious}>&lt;</button>
+        <button onClick={handleNext}>&gt;</button>
       </span>
+      <Review person={data[idx]} />
     </main>
   )
 }
