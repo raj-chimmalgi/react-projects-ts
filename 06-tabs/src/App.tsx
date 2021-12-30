@@ -17,19 +17,24 @@ function App() {
   const fetchData = async () => {
     const URL = 'https://course-api.com/react-tabs-project'
 
-    await fetch(URL)
-      .then((data) => data.json())
-      .then((data) => {
-        setExperiences(data)
-        getIndex()
-      })
-      .catch((err) => console.log(err.message))
+    try {
+      const res = await fetch(URL)
+      const data = await res.json()
+      setExperiences(data)
+      getIndex()
+    } catch (error) {
+      let message
+      message = error instanceof Error ? error.message : String(error)
+      console.log(message)
+    }
   }
 
   const getIndex = (id: number = 0) => {
     const index =
       experiences.length !== 0
-        ? experiences.findIndex((experience) => experience.id === id)
+        ? experiences.findIndex(
+            (experience: IExperience) => experience.id === id
+          )
         : 0
 
     setIndex(index)
