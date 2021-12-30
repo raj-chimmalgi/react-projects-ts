@@ -19,12 +19,8 @@ function App() {
     idx !== 0 ? setIdx(idx - 1) : setIdx(data.length - 1)
 
   useEffect(() => {
-    console.log('created')
-
     let id = setTimeout(handleNext, 4000)
     return () => {
-      console.log('destoryed')
-
       clearTimeout(id)
     }
   }, [idx])
