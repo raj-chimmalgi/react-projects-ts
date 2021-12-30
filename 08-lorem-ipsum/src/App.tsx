@@ -4,7 +4,7 @@ import Lorem from './Lorem'
 
 function App() {
   const [lorem, setLorem] = useState<string[]>([])
-  const [numPara, setNumPara] = useState(0)
+  const [numPara, setNumPara] = useState<number>(0)
 
   const generateLorem = () => {
     if (numPara <= data.length) setLorem(data.slice(0, numPara))
@@ -19,7 +19,9 @@ function App() {
           <input
             type='number'
             min='0'
-            onChange={(e) => setNumPara(Number(e.target.value))}></input>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setNumPara(Number(e.target.value))
+            }></input>
           <button onClick={generateLorem}>GENERATE</button>
         </span>
       </section>
